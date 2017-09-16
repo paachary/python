@@ -1,0 +1,8 @@
+Switching to postgres user
+
+sudo -u postgres psql
+
+
+postgres tries to connect to a database with the name equal to a postgres role that exists
+
+also, if you want to use indent authentication, then there must exist a unix account with the same name as the postgres role and postgres database
