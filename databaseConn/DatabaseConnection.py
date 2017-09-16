@@ -5,7 +5,7 @@ import sys
 from mySQLDbConnection import mySQLDbConnection
 from postgresDbConnection import postgresDbConnection
 from OracleDBConnection import OracleDBConnection
-
+from SqlLiteConnection import SqlLiteDbConnection
 
 class DatabaseConnection(object):
 
@@ -18,6 +18,8 @@ class DatabaseConnection(object):
             return postgresDbConnection();
         if type == "OracleDBConnection":
             return OracleDBConnection();
+        if type == "SqlLiteDbConnection":
+            return SqlLiteDbConnection();
         assert 0, "Bad class chosen: " + type
 
     factory = staticmethod(factory);

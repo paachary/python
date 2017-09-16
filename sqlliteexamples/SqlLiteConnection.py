@@ -1,18 +1,19 @@
 #!/usr/bin/python
+
 import sys
+import sqlite3 as lite
 
 from DatabaseParams import DatabaseParams
-#import databaseConn.DatabaseConnection
 
-class SqlLiteDbConnection(DatabaseParams):
+class SqlLiteDbConnection:
 
     def __init__(self):
-        #print("in child class");
+        print("Connecting to Sqlite Database");
         None
 
-sqlliteconn = SqlLiteDbConnection();
-sqlliteconn.setDbType("sqllite");
-params = sqlliteconn.getConnParameters();
-print(params);
-    
-    
+    def getConnObject(self):
+        sqlitedbConn = DatabaseParams();
+        sqlitedbConn.setDbType("sqllite");
+        params = sqlitedbConn.getConnParameters();
+        dbConn = lite.connect(params['user']);
+        return dbConn;
