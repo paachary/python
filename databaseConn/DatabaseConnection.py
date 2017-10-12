@@ -1,7 +1,4 @@
 #!/usr/bin/python
-from config import config
-import sys
-
 from mySQLDbConnection import mySQLDbConnection
 from postgresDbConnection import postgresDbConnection
 from OracleDBConnection import OracleDBConnection

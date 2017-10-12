@@ -20,7 +20,7 @@ def fetchRecords(conn, tablename):
     rows = cursor.fetchall();
     return rows;
 
-tablename = "Users1";
+tablename = "Users";
 con = lite.connect('user.db')
 try: 
     with con:
