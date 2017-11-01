@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from parentclass import Parent;
+from parentclass import Parent
 class new_class:
     def __init__(self):
         print("in new_class constructor");
