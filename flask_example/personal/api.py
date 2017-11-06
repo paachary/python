@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-## This is a rest service api running on http://127.0.0.1:5000/ 
+## This is a rest service api running on http://127.0.0.1:8080/ 
 ## This uses python with Flask Restful framework
+## The default port for Flask webservice to run is 5000 in the development box (80 on production server)
 
 import sys
 from flask import Flask, request
@@ -89,4 +90,4 @@ if __name__ == '__main__':
               "         api <<database class>> \n")
         exit(1)
     """
-    app.run(debug=True)
+    app.run(debug=True, host='localhost', port=8080)
