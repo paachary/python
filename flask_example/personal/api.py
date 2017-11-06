@@ -15,7 +15,7 @@ class PersonalInfo(Resource):
     def __init__(self):
         ## Connect to the database.
         ## The first argument to the file is the class name which is database specific.
-        self.dbClassName = sys.argv[1]
+        self.dbClassName = 'postgresDbConnection'
 
     def get(self):
         dbConn = DatabaseConnection()
@@ -83,8 +83,10 @@ api = Api(app)
 api.add_resource(PersonalInfo, '/personalInfo')
 
 if __name__ == '__main__':
+    """
     if len(sys.argv) < 2:
         print("Error!! Database Type not provided!!! sample usage: \n",
               "         api <<database class>> \n")
         exit(1)
+    """
     app.run(debug=True)
