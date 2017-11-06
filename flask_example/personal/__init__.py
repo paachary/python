@@ -1,7 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
+#from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
+#ma = Marshmallow(app)
+
 POSTGRES = {
     'user': 'polldb_user',
     'pw': 'polldb_user',
@@ -14,4 +17,4 @@ POSTGRES = {
 
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)

@@ -1,3 +1,10 @@
+import json
+from datetime import datetime
+from uuid import uuid4, UUID
+from personal import ma, db
+from marshmallow_sqlalchemy import ModelSchema
+from marshmallow import Schema, fields
+
 ### Code generation tool for extracting existing tables into a model
 
 #sqlacodegen postgresql://polldb_user:polldb_user@localhost:5432/polldb --outfile PersonalModels.py
@@ -7,11 +14,49 @@ from sqlalchemy import Boolean, CheckConstraint, Column, Date, DateTime, Foreign
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 
+from sqlalchemy.ext.declarative import DeclarativeMeta
 
+"""
+class OutputMixin(object):
+    print("PRAX:: in OutputMixin ")
+    RELATIONSHIPS_TO_DICT = False
+
+    def __iter__(self):
+        return self.to_dict().iteritems()
+
+    def to_dict(self, rel=None, backref=None):
+        if rel is None:
+            rel = self.RELATIONSHIPS_TO_DICT
+        res = {column.key: getattr(self, attr)
+               for attr, column in self.__mapper__.c.items()}
+        if rel:
+            for attr, relation in self.__mapper__.relationships.items():
+                # Avoid recursive loop between to tables.
+                if backref == relation.table:
+                    continue
+                value = getattr(self, attr)
+                if value is None:
+                    res[relation.key] = None
+                elif isinstance(value.__class__, DeclarativeMeta):
+                    res[relation.key] = value.to_dict(backref=self.__table__)
+                else:
+                    res[relation.key] = [i.to_dict(backref=self.__table__)
+                                         for i in value]
+        return res
+
+    def to_json(self, rel=None):
+        def extended_encoder(x):
+            if isinstance(x, datetime):
+                return x.isoformat()
+            if isinstance(x, UUID):
+                return str(x)
+        if rel is None:
+            rel = self.RELATIONSHIPS_TO_DICT
+        return json.dumps(self.to_dict(rel), default=extended_encoder)
+"""
 class AbPermission(Base):
     __tablename__ = 'ab_permission'
 
@@ -318,12 +363,12 @@ class Gender(Base):
     name = Column(String(50), nullable=False, unique=True)
 
 
-class PersonalAddressinfo(Base):
+class PersonalAddressinfo(Base, db.Model):
     __tablename__ = 'personal_addressinfo'
     __table_args__ = (
         UniqueConstraint('person_id', 'address_type'),
     )
-
+    
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_addressinfo_id_seq'::regclass)"))
     address_type = Column(String(1), nullable=False)
     door = Column(Integer, nullable=False)
@@ -333,11 +378,20 @@ class PersonalAddressinfo(Base):
     country = Column(String(50), nullable=False)
     person_id = Column(ForeignKey('personal_personalinfo.id', deferrable=True, initially='DEFERRED'), nullable=False, index=True)
     pin = Column(Integer, nullable=False)
-
     person = relationship('PersonalPersonalinfo', back_populates="address")
 
+    def __repr__(self):
+        return "{addressType:'%s',door:'%s', street:'%s', city=%s', state='%s', country='%s'}" %(self.address_type, \
+                                        self.door, self.street, self.city,\
+                                        self.state, self.country)
 
-class PersonalBankdebitdetail(Base):
+
+    def __str__(self):
+        return ("id:",self.id,",address_type:",self.address_type)
+
+
+
+class PersonalBankdebitdetail(Base, db.Model):
     __tablename__ = 'personal_bankdebitdetails'
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_bankdebitdetails_id_seq'::regclass)"))
@@ -350,13 +404,13 @@ class PersonalBankdebitdetail(Base):
 
     bankmembership = relationship('PersonalBankmembership')
 
-
-class PersonalBankinfo(Base):
+class PersonalBankinfo(Base, db.Model):
     __tablename__ = 'personal_bankinfo'
     __table_args__ = (
         UniqueConstraint('name', 'branch'),
     )
 
+    
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_bankinfo_id_seq'::regclass)"))
     name = Column(String(2000), nullable=False)
     branch = Column(String(2000))
@@ -366,12 +420,13 @@ class PersonalBankinfo(Base):
     brn_abbr_name = Column(String(200))
     bank_info = relationship("PersonalBankmembership", back_populates="bank")
 
-class PersonalBankmembership(Base):
+class PersonalBankmembership(Base, db.Model):
     __tablename__ = 'personal_bankmembership'
     __table_args__ = (
         UniqueConstraint('person_id', 'bank_id', 'acct_type', 'acctnbr'),
     )
 
+    
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_bankmembership_id_seq'::regclass)"))
     acct_type = Column(String(2), nullable=False)
     bank_id = Column(ForeignKey('personal_bankinfo.id', deferrable=True, initially='DEFERRED'), nullable=False, index=True)
@@ -381,13 +436,13 @@ class PersonalBankmembership(Base):
     bank = relationship('PersonalBankinfo',back_populates="bank_info" )
     person = relationship('PersonalPersonalinfo', back_populates="bank_membership")
 
-
-class PersonalPersonalinfo(Base):
+class PersonalPersonalinfo(Base, db.Model):
     __tablename__ = 'personal_personalinfo'
     __table_args__ = (
         UniqueConstraint('first_name', 'middle_name', 'last_name'),
     )
 
+    
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_personalinfo_id_seq'::regclass)"))
     gender = Column(String(2), nullable=False)
     age = Column(Integer, nullable=False)
@@ -400,18 +455,89 @@ class PersonalPersonalinfo(Base):
     bank_membership = relationship("PersonalBankmembership", back_populates="person")
     phoneinfo= relationship("PersonalPhoneinfo",back_populates="person")
 
-class PersonalPhoneinfo(Base):
+    def __repr__(self):
+        return "{firstName:'%s',middleName:'%s',  lastName:'%s', emailid='%s', gender='%s', age='%d'}" %(self.first_name, \
+                                        self.middle_name,  self.last_name, self.emailid,\
+                                        self.gender, self.age)
+
+class PersonalPhoneinfo(Base, db.Model):
     __tablename__ = 'personal_phoneinfo'
     __table_args__ = (
         UniqueConstraint('person_id', 'phone_type', 'phone_nbr'),
     )
 
+    
     id = Column(Integer, primary_key=True, server_default=text("nextval('personal_phoneinfo_id_seq'::regclass)"))
     phone_type = Column(String(1), nullable=False)
     person_id = Column(ForeignKey('personal_personalinfo.id', deferrable=True, initially='DEFERRED'), nullable=False, index=True)
     phone_nbr = Column(String(15), nullable=False)
     person = relationship('PersonalPersonalinfo', back_populates="phoneinfo")
 
+class AddressInfoSchema(ma.ModelSchema):
+    id = fields.Int(dump_only=True)
+    address_type = fields.Str()
+    door = fields.Str()
+    street = fields.Str()
+    city = fields.Str()
+    state = fields.Str()
+    country = fields.Str()
+    person_id = fields.Int()
+    pin = fields.Int(Integer, nullable=False)
+    person = fields.Nested('PersonalInfoSchema', many=True)
+
+    class Meta:
+        model = PersonalAddressinfo
+
+class BankMembershipSchema(ma.ModelSchema):
+    id = fields.Int(dump_only=True)
+    acct_type = fields.Str()
+    bank_id = fields.Str()
+    person_id = fields.Int()
+    acctnbr = fields.Int()
+
+    bank = fields.Nested('BankInfoSchema', many=True)
+    person = fields.Nested('PersonalInfoSchema', many=True)
+
+    class Meta:
+        model = PersonalBankmembership
+
+class BankInfoSchema(ma.ModelSchema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str()
+    branch = fields.Str()
+    address = fields.Str()
+    phone_nbr = fields.Int()
+    bnk_abbr_name = fields.Str()
+    brn_abbr_name = fields.Str()
+    bank_info = fields.Nested('BankMembershipSchema', many=True, exclude=("bank"))
+
+    class Meta:
+        model = PersonalBankinfo
+
+class PhoneInfoSchema(ma.ModelSchema):
+    id = fields.Int()
+    phone_type = fields.Str()
+    person_id = fields.Int()
+    phone_nbr = fields.Int()
+    person = fields.Nested('PersonalInfoSchema', many=True)
+
+    class Meta:
+        model = PersonalPhoneinfo
+
+class PersonalInfoSchema(ma.ModelSchema):
+    id = fields.Int(dump_only=True)
+    gender = fields.Str()
+    age = fields.Int()
+    first_name = fields.Str()
+    last_name = fields.Str()
+    middle_name = fields.Str()
+    emailid = fields.Str()
+    address = fields.Nested(AddressInfoSchema, many=True, exclude=("person"))
+    bank_membership = fields.Nested(BankMembershipSchema, many=True, exclude=("person"))
+   # phoneinfo= fields.Nested(PhoneInfoSchema, many=True, exclude=("person"))
+
+    class Meta:
+        model = PersonalPersonalinfo
 
 class PollsChoice(Base):
     __tablename__ = 'polls_choice'
@@ -422,7 +548,6 @@ class PollsChoice(Base):
     question_id = Column(ForeignKey('polls_question.id', deferrable=True, initially='DEFERRED'), nullable=False, index=True)
 
     question = relationship('PollsQuestion')
-
 
 class PollsChoicedtl(Base):
     __tablename__ = 'polls_choicedtl'

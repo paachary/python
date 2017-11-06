@@ -16,7 +16,7 @@ class DatabaseParams:
     def getConnParameters(self):
         if (self.dbType is None ):
             raise ValueError('The passed argument for dbType is null')
-        params = config("../config/database.ini", self.dbType)
+        params = config("/home/prashant/python_code/src/config/database.ini", self.dbType)
 
         if (params is None):
             raise ValueError('The connection details in the ini file does not exist for dbType:', self.dbType)
