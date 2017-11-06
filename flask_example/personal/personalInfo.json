@@ -1,0 +1,235 @@
+[
+    {
+        "person": {
+            "first_name": "Vaibhavi",
+            "middle_name": "Prashant",
+            "last_name": "Acharya",
+            "gender": "F",
+            "emailid": "prashant_acharya74@yahoo.com",
+            "age": 10,
+            "address": [
+                {
+                    "address_type": "P",
+                    "door": 61,
+                    "street": "1st Main, 2nd Cross, BSK 3rd Stage, 4th Block",
+                    "city": "Bangalore",
+                    "state": "Karnataka",
+                    "country": "India",
+                    "pin": 560085
+                }
+            ],
+            "phone": [
+                {
+                    "phone_type": "R",
+                    "phone_nbr": "+918042078598"
+                },
+                {
+                    "phone_type": "M",
+                    "phone_nbr": "+919845311661"
+                }
+            ],
+            "bank": [
+                {
+                    "acct_type": "SB",
+                    "acctnbr": "379402010008030",
+                    "name": "Union Bank of India",
+                    "branch": "Jayanagar",
+                    "address": "Jayanagar, Bangalore",
+                    "phone_nbr": "0"
+                }
+            ]
+        }
+    },
+    {
+        "person": {
+            "first_name": "Prashant",
+            "middle_name": "Anand",
+            "last_name": "Acharya",
+            "gender": "M",
+            "emailid": "prashant_acharya74@yahoo.com",
+            "age": 43,
+            "address": [
+                {
+                    "address_type": "P",
+                    "door": 61,
+                    "street": "1st Main, 2nd Cross, BSK 3rd Stage, 4th Block",
+                    "city": "Bangalore",
+                    "state": "Karnataka",
+                    "country": "India",
+                    "pin": 560085
+                }
+            ],
+            "phone": [
+                {
+                    "phone_type": "R",
+                    "phone_nbr": "+918042078598"
+                },
+                {
+                    "phone_type": "M",
+                    "phone_nbr": "+919845311661"
+                }
+            ],
+            "bank": [
+                {
+                    "acct_type": "SB",
+                    "acctnbr": "379402010008030",
+                    "name": "Union Bank of India",
+                    "branch": "Jayanagar",
+                    "address": "Jayanagar, Bangalore",
+                    "phone_nbr": "0"
+                },
+                {
+                    "acct_type": "SB",
+                    "acctnbr": "515402010006345",
+                    "name": "Union Bank of India",
+                    "branch": "Koramangala",
+                    "address": "Koramangala",
+                    "phone_nbr": "0"
+                }
+            ]
+        }
+    },
+    {
+        "person": {
+            "first_name": "Vathsala",
+            "middle_name": "Prashant",
+            "last_name": "Acharya",
+            "gender": "F",
+            "emailid": "vathsala_t@rediffmail.com",
+            "age": 39,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Phalguni",
+            "middle_name": "Prashant",
+            "last_name": "Acharya",
+            "gender": "F",
+            "emailid": "prashant_acharya74@yahoo.com",
+            "age": 13,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Janaki",
+            "middle_name": " ",
+            "last_name": "Anand",
+            "gender": "F",
+            "emailid": "prashant_acharya74@yahoo.com",
+            "age": 67,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Skanda",
+            "middle_name": "Anand",
+            "last_name": "Acharya",
+            "gender": "M",
+            "emailid": "skanda_acharya@gmai.com",
+            "age": 37,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "timepass",
+            "middle_name": "sefl",
+            "last_name": "timepass again",
+            "gender": "M",
+            "emailid": "time@ore.com",
+            "age": 456,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "fullto",
+            "middle_name": "timepass",
+            "last_name": "fulltoagain",
+            "gender": "M",
+            "emailid": "prsd@fov.com",
+            "age": 34,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Jack",
+            "middle_name": " ",
+            "last_name": "Bauer",
+            "gender": "M",
+            "emailid": "j.g@email.com",
+            "age": 23,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Chloe",
+            "middle_name": " ",
+            "last_name": "O'Brian",
+            "gender": "M",
+            "emailid": "c.u@gmail.com",
+            "age": 23,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Kim",
+            "middle_name": " ",
+            "last_name": "Bauer",
+            "gender": "F",
+            "emailid": "r.f@gmail.com",
+            "age": 21,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "Chun",
+            "middle_name": " ",
+            "last_name": "Chin",
+            "gender": "F",
+            "emailid": "chun.chin@mail.com",
+            "age": 23,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    },
+    {
+        "person": {
+            "first_name": "June",
+            "middle_name": "September",
+            "last_name": "August",
+            "gender": "M",
+            "emailid": "june.august@mail.com",
+            "age": 53,
+            "address": [],
+            "phone": [],
+            "bank": []
+        }
+    }
+]
