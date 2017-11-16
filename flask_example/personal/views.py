@@ -1,3 +1,6 @@
+import personal
+
+from sqlalchemy.orm import sessionmaker
 from flask import render_template, flash, redirect, jsonify, json
 from json import dumps, loads, JSONEncoder
 #from models import Personalinfo
@@ -6,13 +9,14 @@ from json import dumps, loads, JSONEncoder
 from NewPersonModel import personal_personalinfo, PythonObjectEncoder
 
 from tables import PersonTable
-from personal import app
+
 
 from sqlalchemy import create_engine
-engine = create_engine('postgresql://polldb_user:polldb_user@localhost:5432/polldb',echo=False)
-from sqlalchemy.orm import sessionmaker
+engine = create_engine('postgresql://polldb_user:polldb_user@localhost:5432/polldb', echo=False)
+
 Session = sessionmaker(bind=engine)
-session=Session()
+session = Session()
+
 
 @app.route("/personalInfo", methods=['GET'])
 def main():
@@ -40,7 +44,7 @@ def main():
         i = i + 1
         rows.append([person.as_dict(), {"address":address for address in person.address }])
 #        for addresses in person.address:
-#           rows.extend([addresses.as_dict()]) 
+#           rows.extend([addresses.as_dict()])
     #rows1 = object_as_dict(rows)
     rows = PersonalPersonalinfo.query.all()
     print(rows)
@@ -52,14 +56,15 @@ def main():
 #    return jsonify(results)
     """
     results = session.query(PersonalPersonalinfo).join(PersonalAddressinfo).all()
-    rows={}
+    rows = {}
     i = 0
     for r in results:
         i = i + 1
-        ##rows[i] = r._asdict()
+        #rows[i] = r._asdict()
         rows[i] = r
         print(rows[i])
     return json.dumps(rows)
+
 
 @app.route('/greeting', methods=['GET'])
 def getter():
@@ -70,6 +75,8 @@ def getter():
     print(results)
     return dumps(results, cls=PythonObjectEncoder)
 #    return dumps(result, cls=PythonObjectEncoder)
+
+
 """
 @app.route('/greeting', methods=['GET'])
 def myapi():

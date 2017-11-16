@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-## This is a rest service api running on http://127.0.0.1:8080/ 
+## This is a rest service api running on http://127.0.0.1:8080/
 ## This uses python with Flask Restful framework
 ## The default port for Flask webservice to run is 5000 in the development box (80 on production server)
 
 import sys
-from flask import Flask, request
+from exercise import app
 from flask_restful import Resource, Api
 from DatabaseConnection import DatabaseConnection
 from ResultSet import ResultSet
@@ -21,7 +21,7 @@ class PersonalInfo(Resource):
     def get(self):
         dbConn = DatabaseConnection()
         dbConn.setDbType(self.dbClassName)
-        connObj = dbConn.getDbConn()   
+        connObj = dbConn.getDbConn()
         query =   " SELECT row_to_json(t) AS person"\
                   " FROM "\
                   " ("\
@@ -74,11 +74,10 @@ class PersonalInfo(Resource):
         resultSet = ResultSet(connObj);
         cursor =  resultSet.getQueryCursor()
         columnName = resultSet.getColumnNames(query)
-        data = [dict(zip(columnName, row))  
+        data = [dict(zip(columnName, row))
                 for row in resultSet.getQueryResult(query)]
         return data
 
-app = Flask(__name__)
 
 api = Api(app)
 api.add_resource(PersonalInfo, '/personalInfo')
