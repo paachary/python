@@ -14,21 +14,16 @@ session = Session()
 
 @app.route('/greeting', methods=['GET'])
 def getter():
-#   results = {}
     result = session.query(personal_personalinfo).all()
-#    for res in result:
-#        results[res.id] = res
-#    print(dumps(results, cls=PythonObjectEncoder))
-    empList = []
+    results = []
     for res in result:
-        empDict = {
+        custDict = {
             'Id': res.id,
             'firstName': res.first_name,
             'middleName': res.middle_name,
             'lastName': res.last_name}
-        empList.append(empDict)
-    return jsonify(empList)
-# json.dumps(empList)
+        results.append(custDict)
+    return jsonify(results)
 
 
 if __name__ == '__main__':
