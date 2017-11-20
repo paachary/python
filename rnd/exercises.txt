@@ -162,3 +162,102 @@ In [64]: lst1
 Out[64]: ['a', 'b', ['ab', 'ba']]
 
 
+----------------
+fibonacci series
+
+In [27]: n = input("enter the higher limit: ")
+    ...: currval = 0
+    ...: nextval = 1
+    ...: totalval = 0
+    ...: for a in range(1,int(n)+1):
+    ...:     print(totalval)
+    ...:     totalval = currval + nextval
+    ...:     nextval = currval
+    ...:     currval = totalval
+
+
+## Palindrome
+print(True if 'MALAYALAM' == 'MALAYALAM'[::-1] else False)
+
+## String slicing examples
+In [265]: string='PRASHANT'
+
+In [272]: len(string)
+Out[272]: 8
+
+## [P][R][A][S][H][A][N][T]
+## character from l-r
+##  0  1  2  3  4  5  6  7
+## character position
+##  1  2  3  4  5  6  7  8
+## character from r-l
+##  -8 -7 -6 -5 -4 -3 -2 -1
+
+## [T][N][A][H][S][A][R][P]
+## character from r-l
+##  -8 -7 -6 -5 -4 -3 -2 -1
+
+
+## Start at the position mentioned in the first slice
+## and go till the end of the string
+In [268]: string[len(string)-len(string)::]
+Out[268]: 'PRASHANT'
+
+## Start at the 2nd character (string[2]) and go till the end
+In [279]: string[2::]
+Out[279]: 'ASHANT'
+
+## String at the -1 st position, i.e. start from the last character
+In [269]: string[len(string)-len(string)-1::]
+Out[269]: 'T'
+
+## String at the -2nd position (start from last-but-one position in the string)
+In [270]: string[len(string)-len(string)-2::]
+Out[270]: 'NT'
+
+## start from last-but-fifth position in the string)
+In [271]: string[len(string)-len(string)-5::]
+Out[271]: 'SHANT'
+
+## start from 1st character of the string, i.e.string[1] and stop at the 2nd position
+In [276]: string[1:2:]
+Out[276]: 'R'
+
+## Start from 2nd character and stop at the 6th character position
+In [277]: string[2:6:]
+Out[277]: 'ASHA'
+
+## String reversal
+In [278]: string[::-1]
+Out[278]: 'TNAHSARP'
+
+## First 3 characters starting from the 1st position
+In [259]: 'PRASHANT'[-8:3:]
+Out[259]: 'PRA'
+
+In [282]: 'PRASHANT'[-7:3:]
+Out[282]: 'RA'
+
+## Skip the last character and start after 3rd character
+In [281]: string[:3:-1]
+Out[281]: 'TNAH'
+
+## Skip the last character and start after 0th character
+In [322]: string[:0:-1]
+Out[322]: 'TNAHSAR'
+
+## Skip 2 characters
+In [310]: string[::2]
+Out[310]: 'PAHN'
+
+##################################33
+
+##environment variables
+
+In [325]: import os
+
+In [326]: print(os.environ.get('PYTHONPATH'))
+:/home/prashant/python_code/src:/home/prashant/python_code/src/config:/home/prashant/python_code/src/databaseConn:/home/prashant/python_code/src/mysqlexamples:/home/prashant/python_code/src/postgresexamples:/home/prashant/python_code/src/oracleexamples:/home/prashant/python_code/src/sqlliteexamples:/home/prashant/mysite:/home/prashant/mysite/polls:/home/prashant/python_code/src/flask_example:/home/prashant/python_code/src/flask_example/personal:/home/prashant/python_code/src/flask_example/fab-masterdetail:/home/prashant/python_code/src/flask_example/fab-masterdetail/app:/home/prashant/python_code/src/exercise:/home/prashant/python_code/src/exercise/subpackage:/home/prashant/anaconda3/bin:/home/prashant/scripts:/u01/app/oracle/product/12/dbhome_1/bin:/usr/sbin:/home/prashant/scripts:/home/prashant/bin:/home/prashant/.local/bin:/usr/share/java/mongo-java-driver-3.0.4.jar:/home/prashant/eclipse-workspace/javaproject/build/classes/main:/jlib:/rdbms/jlib:/bin:/home/prashant/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+In [327]: print(os.environ.get('ORACLE_HOME'))
+/u01/app/oracle/product/12/dbhome_1
