@@ -1,3 +1,3 @@
-import exercise.add_nums
+import exercise.add_nums as add_nums
 
-print(exercise.add_nums.add_nums(2,6))
+print(add_nums.add_nums(2, 6))

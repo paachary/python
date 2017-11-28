@@ -6,7 +6,8 @@ from sqlalchemy import create_engine
 
 app = subpackage.app
 
-connectString = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % subpackage.POSTGRES
+connectString = \
+ 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % subpackage.POSTGRES
 engine = create_engine(connectString, echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
