@@ -1,8 +1,10 @@
 import subpackage
 from sqlalchemy.orm import sessionmaker
-from flask import jsonify
 from NewPersonModel import PersonalInfo
 from sqlalchemy import create_engine
+from subpackage import request as request
+from subpackage import jsonify as jsonify
+from db_functions import DatabaseFunctions
 
 app = subpackage.app
 # 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % subpackage.POSTGRES
@@ -63,6 +65,33 @@ def getter():
         custDict['bankInfo'] = bankdetails
         results.append(custDict)
     return jsonify(results)
+
+
+@app.route('/messages', methods=['POST'])
+def post_message():
+
+    if request.headers['Content-Type'] == 'text/plain':
+        return "Text Message: " + request.data
+
+    elif request.headers['Content-Type'] == 'application/json':
+        message = request.json
+        act_msg = message['message']
+        print(type(message), ":: actual msgs = ", act_msg)
+        return "PRAX Message: " + act_msg
+
+
+@app.route('/messages/<int:id>', methods=['PUT'])
+def put_message(id):
+
+    if request.headers['Content-Type'] == 'text/plain':
+        return "Text Message: " + request.data
+
+    elif request.headers['Content-Type'] == 'application/json':
+        print(id)
+        message = request.json
+        dbFunc = DatabaseFunctions()
+        msg = dbFunc.update(id, message)
+        return msg
 
 
 if __name__ == '__main__':
