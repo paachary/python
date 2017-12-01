@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
-### A generic class for providing resultset, connection object, column names
+# A generic class for providing resultset, connection object, column names
 
-import sys
 
 class ResultSet:
     dbConnObj = None
@@ -11,20 +10,20 @@ class ResultSet:
 
     def __init__(self, dbConnObj):
         self.dbConnObj = dbConnObj
-    
+
     def getQueryCursor(self):
-        self.dbCursor =  self.dbConnObj.cursor()
+        self.dbCursor = self.dbConnObj.cursor()
         return self.dbCursor
 
     def getQueryResult(self, query):
-        if self.dbCursor == None:
-            self.dbCursor =  self.dbConnObj.cursor()
+        if self.dbCursor is None:
+            self.dbCursor = self.dbConnObj.cursor()
         self.dbCursor.execute(query)
         return(self.dbCursor.fetchall())
 
     def getColumnNames(self, query):
-        if self.dbCursor == None:
-            self.dbCursor =  self.getQueryCursor();
+        if self.dbCursor is None:
+            self.dbCursor = self.getQueryCursor()
         self.dbCursor.execute(query)
-        self.dbColumnNames = [col[0] for col in self.dbCursor.description ]
+        self.dbColumnNames = [col[0] for col in self.dbCursor.description]
         return self.dbColumnNames

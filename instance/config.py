@@ -1,0 +1,5 @@
+POSTGRES_USER = 'polldb_user'
+POSTGRES_PASSWORD = 'polldb_user'
+POSTGRES_DB = 'polldb'
+POSTGRES_HOST = 'localhost'
+POSTGRES_PORT = '5432'

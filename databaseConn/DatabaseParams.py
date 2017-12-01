@@ -1,7 +1,10 @@
 #!/usr/bin/python
 from config import config
+
+
 class DatabaseParams:
-    'This is the parent class which has basic methods to get the db connection parameters'
+    'This is the parent class which has basic methods to get the '
+    'db connection parameters'
     dbType = 'mongodb'
 
     def __init__(self):
@@ -14,11 +17,12 @@ class DatabaseParams:
         return self.dbType
 
     def getConnParameters(self):
-        if (self.dbType is None ):
+        if (self.dbType is None):
             raise ValueError('The passed argument for dbType is null')
-        params = config("/home/prashant/python_code/src/config/database.ini", self.dbType)
+        params = config("/home/prashant/python_code/src/config/database.ini",
+                        self.dbType)
 
         if (params is None):
-            raise ValueError('The connection details in the ini file does not exist for dbType:', self.dbType)
+            raise ValueError('The connection details in the ini file does not'
+                             ' exist for dbType:', self.dbType)
         return params
-        

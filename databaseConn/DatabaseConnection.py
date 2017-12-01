@@ -4,30 +4,30 @@ from postgresDbConnection import postgresDbConnection
 from OracleDBConnection import OracleDBConnection
 from SqlLiteConnection import SqlLiteDbConnection
 
+
 class DatabaseConnection(object):
 
-    dbType = None; ##mySQLDbConnection
+    dbType = None
 
     def factory(type):
         if type == "mySQLDbConnection":
-            return mySQLDbConnection();
+            return mySQLDbConnection()
         if type == "postgresDbConnection":
-            return postgresDbConnection();
+            return postgresDbConnection()
         if type == "OracleDBConnection":
-            return OracleDBConnection();
+            return OracleDBConnection()
         if type == "SqlLiteDbConnection":
-            return SqlLiteDbConnection();
+            return SqlLiteDbConnection()
         assert 0, "Bad class chosen: " + type
 
-    factory = staticmethod(factory);
+    factory = staticmethod(factory)
 
-    def setDbType(self,dbType):
-        self.dbType = dbType;
+    def setDbType(self, dbType):
+        self.dbType = dbType
 
     def getDbType(self):
-        return dbType;
+        return self.dbType
 
     def getDbConn(self):
-        dbObj = DatabaseConnection.factory(self.dbType);
-        return dbObj.getConnObject();
-
+        dbObj = DatabaseConnection.factory(self.dbType)
+        return dbObj.getConnObject()
