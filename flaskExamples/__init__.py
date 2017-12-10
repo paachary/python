@@ -1,6 +1,7 @@
 from add_nums import add_nums
 from number_reverse import NumberReverse
 from flask import Flask, json, jsonify, request
+from DatabaseConnection import DatabaseConnection
 
 app = Flask(__name__, instance_relative_config=True)
 log_def = True
