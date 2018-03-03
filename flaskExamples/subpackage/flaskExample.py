@@ -5,19 +5,21 @@ from sqlalchemy import create_engine
 from subpackage import request as request
 from subpackage import jsonify as jsonify
 from db_functions import DatabaseFunctions
-
+from subpackage import get_exec_time
 app = subpackage.app
 # 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % subpackage.POSTGRES
 
 
 @app.route('/greeting', methods=['GET'])
+@get_exec_time
 def getter():
     connectString = \
-        'postgresql://{0}:{1}@{2}:{3}/{4}'.format(app.config['POSTGRES_USER'],
-                                                  app.config['POSTGRES_PASSWORD'],
-                                                  app.config['POSTGRES_HOST'],
-                                                  app.config['POSTGRES_PORT'],
-                                                  app.config['POSTGRES_DB'],)
+        'postgresql://{0}:{1}@{2}:{3}/{4}'.\
+        format(app.config['POSTGRES_USER'],
+               app.config['POSTGRES_PASSWORD'],
+               app.config['POSTGRES_HOST'],
+               app.config['POSTGRES_PORT'],
+               app.config['POSTGRES_DB'],)
     engine = create_engine(connectString, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()

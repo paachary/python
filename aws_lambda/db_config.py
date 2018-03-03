@@ -1,0 +1,5 @@
+host = "praxdborcl.cj7qfpcgtm22.ap-south-1.rds.amazonaws.com"
+db_name = "orcl"
+port = "1521"
+user = "praxorcl"
+passwd = "praxorcl"

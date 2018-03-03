@@ -1,6 +1,6 @@
-#!/usr/bin/python
-### Inheritance example
+# Inheritance example
 from parentclass import Parent
+
 
 class Child(Parent):  # define child class
     def __init__(self):
