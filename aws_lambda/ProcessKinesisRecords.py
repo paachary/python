@@ -25,7 +25,7 @@ with open('/tmp/HOSTALIASES', 'w') as hosts_file:
 
 
 # Initialize the  SQL stmt to insert data into the table(s)
-stmt = """ INSERT INTO security_input ( security_id, ticker_symb, load_dt, price)
+stmt = """ INSERT INTO security_price_dtls ( security_id, ticker_symb, load_dt, price)
             VALUES ({0}, '{1}', '{2}', {3})"""
 
 
