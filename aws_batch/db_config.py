@@ -1,0 +1,9 @@
+host="praxpostgressql.cj7qfpcgtm22.ap-south-1.rds.amazonaws.com"
+database="praxpostgresSQL"
+user="praxpostgresSQL"
+password="Vats4Prax"
+port=5432
+aws_access_key_id="AKIAIZ57HHOUJBO6KHFQ"
+aws_secret_access_key="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"
+s3_bucket_name="prax-main-bucketresized"
+s3_file_name="security.csv"
