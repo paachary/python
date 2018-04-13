@@ -1,0 +1,23 @@
+{
+    "FunctionName": "ssh_worker_function",
+    "Runtime": "python3.6",
+    "Role": "arn:aws:iam::<acctid>:role/ssh_worker_role",
+    "Handler": "ssh_worker_function.worker_handler",
+    "Code": {
+        "ZipFile": fileb:///home/prashant/python_code/src/aws_lambda/invocation_functions/ssh_worker_function.zip
+    },
+    "Description": "Python Lambda function for performing ssh operation and executing shell scripts on hosts of ec2 instances",
+    "Timeout": 300,
+    "MemorySize": 128,
+    "Publish": true,
+    "VpcConfig": {
+        "SubnetIds": [
+            ""
+        ],
+        "SecurityGroupIds": [
+            ""
+        ]
+    }
+}
+
+

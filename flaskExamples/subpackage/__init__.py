@@ -2,3 +2,4 @@
 from flaskExamples import app
 from flaskExamples import jsonify, json, request
 from flaskExamples import DatabaseConnection
+from flaskExamples import get_exec_time
