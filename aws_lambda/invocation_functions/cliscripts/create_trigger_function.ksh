@@ -20,9 +20,9 @@ aws lambda add-permission \
         --statement-id Invoke_SSH_Event_15_mins \
         --action lambda:InvokeFunction \
         --principal events.amazonaws.com \
-        --source-arn 'arn:aws:events:ap-south-1:973265861767:rule/Invoke_SSH_Event_15_mins'
+        --source-arn 'arn:aws:events:ap-south-1:<>:rule/Invoke_SSH_Event_15_mins'
 
 ## Adding lambda as a target to the schedule rule
 aws events put-targets --rule Invoke_SSH_Event_15_mins \
-        --targets "Id"="1","Arn"="arn:aws:lambda:ap-south-1:973265861767:function:ssh_trigger_function"
+        --targets "Id"="1","Arn"="arn:aws:lambda:ap-south-1:<>:function:ssh_trigger_function"
 

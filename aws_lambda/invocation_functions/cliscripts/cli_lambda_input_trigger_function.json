@@ -1,18 +1,24 @@
 {
     "FunctionName": "ssh_trigger_function",
     "Runtime": "python3.6",
-    "Role": "arn:aws:iam::973265861767:role/service-role/ssh_trigger_role",
+    "Role": "arn:aws:iam::<>:role/service-role/ssh_trigger_role",
     "Handler": "ssh_trigger_function.trigger_handler",
     "Description": "Python Lambda function for invoking a worker function to perform ssh operation on hosts of ec2 instances",
     "Timeout": 3,
     "MemorySize": 128,
     "Publish": true,
     "VpcConfig": {
-        "SubnetIds": [ "subnet-04dfa1d392609f95c","subnet-00424891f21da407d",
-                     "subnet-04d1e23339bb326a1","subnet-006b0fd82b73024a8"
+        "SubnetIds": [ "subnet-0a726b941c2a3305b",
+                       "subnet-0d628fdcf7d43ff31",
+                       "subnet-0671b067ad25b42e7",
+                       "subnet-047585a882c39d0ae"
         ],
         "SecurityGroupIds": [
-            "sg-0355d03b611af714d"
+            "sg-0fc65116df204712e"
         ]
     }
 }
+
+
+
+  
