@@ -1,0 +1,15 @@
+<!-- person.html -->
+
+<html>
+        <body>
+                  <table>
+                  <h1>Person Details</h1>
+                    {% for person in person_records %}
+                    <tr>
+                    <div><td>{{person['person']['firstName']}}</td> </div>
+                    <div><td>{{person['person']['lastName']}}</td> </div>
+                    </tr>
+                          {% endfor %}
+                   </table>
+        </body>
+</html>

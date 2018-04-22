@@ -9,6 +9,7 @@ def worker_handler(event, context):
                             '/tmp/EC2SouthKP.pem')
 
     key = paramiko.RSAKey.from_private_key_file('/tmp/EC2SouthKP.pem')
+    print("key = {0} ".format(key))
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
