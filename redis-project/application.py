@@ -59,15 +59,25 @@ def upd_info():
         print('Caught this error: ' + repr(error))
         return redirect("/")
 
+def add_init_keys_values():
+    keyval =  {}
+    r.hset('user',"Name","Some Value")
+    r.hset('user',"Age","XX")
+    r.hset('user',"EmailId","someemail.com")
 
 def get_info():
     keyval = {}
     keys = r.hkeys('user')
+
+    if (keys == None or len(keys) == 0):
+        add_init_keys_values()
+
     for key in keys:
         val = r.hget('user', key)
         keyval[key] = val
+
     return keyval
 
 
 if (__name__ == '__main__'):
-    application.run(host='localhost', port=5050)
+    application.run(host='0.0.0.0', port=80)
