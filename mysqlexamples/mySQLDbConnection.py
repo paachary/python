@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import MySQLdb
+#import MySQLdb
+import pymysql as MySQLdb
 from DatabaseParams import DatabaseParams
 
 
