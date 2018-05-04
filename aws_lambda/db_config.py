@@ -1,5 +1,0 @@
-host = "Xxxxxxx.ap-south-1.rds.amazonaws.com"
-db_name = "xxxxx"
-port = "1521"
-user = "xxxxx"
-passwd = "xxxxx"

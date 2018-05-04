@@ -1,9 +1,0 @@
-host="XXXXXXXXXXXXXXXXXX.ap-south-1.rds.amazonaws.com"
-database="XXXXXXXX"
-user="XXXXXXXX"
-password="XXXXXXXX"
-port=5432
-aws_access_key_id="XXXXXXXX"
-aws_secret_access_key="XXXXXXXX"
-s3_bucket_name="XXXXXXXX"
-s3_file_name="XXXXXXXX.XXXXXXXX"
