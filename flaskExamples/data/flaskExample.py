@@ -6,7 +6,6 @@ from data import request, jsonify, render_template, get_exec_time, redirect,url_
 from db_functions import DatabaseFunctions
 
 app = data.app
-# 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % data.POSTGRES
 
 connectString = \
    'postgresql://{0}:{1}@{2}:{3}/{4}'.\
@@ -112,24 +111,19 @@ def getter():
    return jsonify(results)
 
 
-@app.route('/messages', methods=['POST'])
-def post_message():
-
-    if request.headers['Content-Type'] == 'text/plain':
-        return "Text Message: " + request.data
-
-    elif request.headers['Content-Type'] == 'application/json':
-        message = request.json
-        act_msg = message['message']
-        print(type(message), ":: actual msgs = ", act_msg)
-        return "PRAX Message: " + act_msg
+@app.route('/personDelete/<int:id>', methods=['POST'])
+def delete_message(id):
+    message = request.json
+    print(message)
+    dbFunc = DatabaseFunctions()
+    msg = dbFunc.delete(id)
+    return redirect("/")
 
 
 """
 example using curl command for PUT:
 curl -X PUT http://localhost:4040/messages/25 -H "Content-Type: application/json" -d '{"person": {"Id": 25,"firstName": "Vaibhavi","lastName": "Acharya",  "middleName": "Prashant","age":"20", "gender":"F","emailid":"prashant_acharya14@yaghoo.com","addresses": [{"addressType": "P","city": "Bangalore","country": "India","door": 61,"pin": 560085,"state": "Karnataka","street": "1st Main, 2nd Cross, BSK 3rd Stage, 4th Block"}],"phones": [{"phoneNbr": "+918042078598","phoneType": "R"},{"phoneNbr": "+919845311661","phoneType": "M"}],"bankInfo": [{"accountNbr": "379402010008030", "accountType": "SB", "address": "Jayanagar, Bangalore", "bankName": "Union Bank of India", "branchName": "Jayanagar", "phoneNbr": "080947846434"}]}}'
 """
-
 
 @app.route('/messages/<int:id>', methods=['PUT'])
 def put_message(id):
@@ -144,19 +138,6 @@ def put_message(id):
         return msg
 
 
-"""
-curl -X DELETE http://localhost:4040/messages/76
-"""
-
-
-@app.route('/personDelete/<int:id>', methods=['POST'])
-def delete_message(id):
-    message = request.json
-    print(message)
-    dbFunc = DatabaseFunctions()
-    msg = dbFunc.delete(id)
-    return redirect("/")
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=4040)
+
