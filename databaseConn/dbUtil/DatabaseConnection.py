@@ -1,13 +1,13 @@
-#!/usr/bin/python
-from mySQLDbConnection import mySQLDbConnection
-from postgresDbConnection import postgresDbConnection
-from OracleDBConnection import OracleDBConnection
-from SqlLiteConnection import SqlLiteDbConnection
+from mysqlConn.mySQLDbConnection import mySQLDbConnection
+from postgresqlConn import postgresDbConnection
+from oracleConn.OracleDBConnection import OracleDBConnection
+from sqlliteConn.SqlLiteDbConnection import SqlLiteDbConnection
 
 
 class DatabaseConnection(object):
 
     dbType = None
+
 
     def factory(type):
         if type == "mySQLDbConnection":

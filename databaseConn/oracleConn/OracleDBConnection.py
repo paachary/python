@@ -1,6 +1,5 @@
-#!/usr/bin/python
 import cx_Oracle
-from DatabaseParams import DatabaseParams
+from dbUtil.DatabaseParams import DatabaseParams
 
 
 class OracleDBConnection:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from config import config
+from dbConfig import config
 
 
 class DatabaseParams:
@@ -19,7 +19,7 @@ class DatabaseParams:
     def getConnParameters(self):
         if (self.dbType is None):
             raise ValueError('The passed argument for dbType is null')
-        params = config("/home/prashant/python_code/src/config/database.ini",
+        params = config("/home/prashant/python_code/src/databaseConn/dbConfig/database.ini",
                         self.dbType)
 
         if (params is None):

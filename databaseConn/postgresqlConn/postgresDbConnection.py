@@ -1,6 +1,5 @@
-#!/usr/bin/python
 import psycopg2
-from DatabaseParams import DatabaseParams
+from dbUtil.DatabaseParams import DatabaseParams
 
 
 class postgresDbConnection(DatabaseParams):

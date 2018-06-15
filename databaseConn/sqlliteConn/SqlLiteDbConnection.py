@@ -1,7 +1,5 @@
-#!/usr/bin/python
-
 import sqlite3 as lite
-from DatabaseParams import DatabaseParams
+from dbUtil.DatabaseParams import DatabaseParams
 
 
 class SqlLiteDbConnection:

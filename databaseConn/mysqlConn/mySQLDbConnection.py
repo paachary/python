@@ -1,8 +1,5 @@
-#!/usr/bin/python
-
-#import MySQLdb
 import pymysql as MySQLdb
-from DatabaseParams import DatabaseParams
+from dbUtil.DatabaseParams import DatabaseParams
 
 
 class mySQLDbConnection:
