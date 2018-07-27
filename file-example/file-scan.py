@@ -8,6 +8,7 @@
    specified lines above and below the string
 """
 
+
 # define the file name
 filename = "catchme.log"
 
@@ -43,6 +44,8 @@ with open(filename, "r") as file:
             # print the lines below the searched string
             for line_no in range(lineno+1, lineno+1+limit, 1):
                 print(lines[:line_no][-1])
+
+            input("Enter to continue")
 
     # decorate the output
     print("-----"*19)
