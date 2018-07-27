@@ -21,6 +21,9 @@ str_search = "catchme"
 with open(filename, "r") as file:
     lineno = 0
 
+    print("\nSearching the log file \"{0}\" for string \"{1}\"\n".format(
+            filename, str_search))
+
     # readlines function will cache the entire file contents. 
     # The output will be a list.
     lines = file.readlines()
@@ -45,7 +48,7 @@ with open(filename, "r") as file:
             for line_no in range(lineno+1, lineno+1+limit, 1):
                 print(lines[:line_no][-1])
 
-            input("Enter to continue")
+            input("\nEnter to continue")
 
     # decorate the output
     print("-----"*19)
