@@ -110,6 +110,7 @@ AS
                          employees e,
                          jobs j
                     WHERE d.department_id = e.department_id
+                      AND e.job_id = j.job_id
                       AND j.job_id = pv_job_id
                     GROUP BY d.department_name;  
             ELSE
