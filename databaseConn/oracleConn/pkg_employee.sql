@@ -104,22 +104,20 @@ AS
             IF ( job_id_exists ( pv_job_id => pv_job_id ) )
             THEN
                 OPEN lv_results FOR
-                    SELECT department_name AS department_name,
-                           first_name||','||last_name AS name,
-                           job_title AS job
-                    FROM departments d, 
-                         employees e, 
+                    SELECT department_name, LISTAGG(job_title||'~'||first_name||','||last_name, '%')
+                    WITHIN GROUP (ORDER BY department_name)
+                    FROM departments d,
+                         employees e,
                          jobs j
-                    WHERE d.department_id = e.department_id 
-                      AND e.job_id = j.job_id
+                    WHERE d.department_id = e.department_id
                       AND j.job_id = pv_job_id
-                    ORDER BY d.department_name;  
+                    GROUP BY d.department_name;  
             ELSE
                 RAISE_APPLICATION_ERROR( -20010, 'The job-id provided does not exist in the database. Please check and resubmit request');
             END IF;
         ELSE
             OPEN lv_results FOR
-                SELECT department_name, listagg(job_title||'~'||first_name||','||last_name, '%')
+                SELECT department_name, LISTAGG(job_title||'~'||first_name||','||last_name, '%')
                 WITHIN GROUP (ORDER BY department_name)
                 FROM departments d,
                      employees e,
